@@ -23,7 +23,17 @@ You can interact with this deployed app by calling the phone numbers at the top.
 
 Clone this repo and run `bundle install` to install the dependencies.
 
-The `Dockerfile` may mostly work locally, but is actually the production configuration for deploying this app. Currently it is deployed on [Fly.io](https://fly.io).
+The `Dockerfile` may mostly work as is, but is actually the production configuration for deploying this app. Currently it is deployed on [Fly.io](https://fly.io).
+
+### Environment variables
+
+This app depends on the following environment variables to be deployed in production:
+
+* `DATABASE_URL`: This example is using `mysql2` as the database, but you can use any database supported by Rails.
+* `REDIS_URL`: Redis is used for `sidekiq` as the ActiveJob backend.
+* `AWS_ACCESS_KEY_ID`: AWS S3 used in `storage.yml` to store audio recording files. Any ActiveStorage provider will work.
+* `AWS_SECRET_ACCESS_KEY`: AWS S3 used in `storage.yml` to store audio recording files. Any ActiveStorage provider will work.
+* `AWS_BUCKET`: AWS S3 used in `storage.yml` to store audio recording files. Any ActiveStorage provider will work.
 
 
 ## Local development
