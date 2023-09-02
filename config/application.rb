@@ -34,6 +34,6 @@ module TwilioRailsExample
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.hosts << "kmcphillips-twilio-rails-example.fly.dev"
+    config.hosts << ENV["TWILIO_RAILS_EXAMPLE_HOST"]
   end
 end

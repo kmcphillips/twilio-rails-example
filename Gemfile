@@ -17,6 +17,10 @@ gem "sidekiq", "~> 7.1"
 gem "aws-sdk-s3"
 gem "dotenv-rails"
 
+gem "twilio-rails", "1.0.1"
+# To test against a branch or fork of twilio-rails, uncomment the following line and set the appropriate branch or fork.
+# gem "twilio-rails", github: "kmcphillips/twilio-rails", branch: "main"
+
 group :development, :test do
   gem "sqlite3", "~> 1.4"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
