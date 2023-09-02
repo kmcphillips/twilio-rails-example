@@ -1,0 +1,54 @@
+# fly.toml app configuration file generated for kmcphillips-twilio-rails-example on 2023-09-02T11:04:23-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "kmcphillips-twilio-rails-example"
+primary_region = "yul"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
+
+[build]
+  [build.args]
+    BUILD_COMMAND = "bin/rails fly:build"
+    SERVER_COMMAND = "bin/rails fly:server"
+
+[deploy]
+  release_command = "bin/rails fly:release"
+
+[env]
+  PORT = "8080"
+
+[processes]
+  app = "bin/rails fly:server"
+  sidekiq = "bin/rails fly:sidekiq"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/"
