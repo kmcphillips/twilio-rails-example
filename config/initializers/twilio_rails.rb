@@ -82,4 +82,7 @@ Twilio::Rails.setup do |config|
   config.include_phone_macros ExamplePhoneMacros
 
   config.phone_trees.register { ExampleTree }
+
+  config.sms_responders.register { LinkResponder }
+  config.sms_responders.register { CountResponder }
 end
