@@ -79,5 +79,7 @@ Twilio::Rails.setup do |config|
   # Allows adding a module to be included into the `macros` in the phone tree DSL. This is useful for
   # adding convenience methods specific to the application. It can be called multiple times to add multiple modules.
   # Built in macros are defined in `Twilio::Rails::Phone::TreeMacros`.
-  # config.include_phone_macros MyMacrosModule
+  config.include_phone_macros ExamplePhoneMacros
+
+  config.phone_trees.register { ExampleTree }
 end

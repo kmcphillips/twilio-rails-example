@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_02_191317) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_03_171228) do
   create_table "messages", force: :cascade do |t|
     t.bigint "sms_conversation_id", null: false
     t.string "sid"
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_191317) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["phone_number"], name: "index_phone_callers_on_phone_number"
   end
 

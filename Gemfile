@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "sidekiq", "~> 7.1"
 gem "aws-sdk-s3"
 gem "dotenv-rails"
+gem "faker"
 
 gem "twilio-rails", "1.0.1"
 # To test against a branch or fork of twilio-rails, uncomment the following line and set the appropriate branch or fork.
