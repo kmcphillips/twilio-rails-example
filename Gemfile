@@ -1,9 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.4.4"
 
-gem "rails", "~> 7.0.7", ">= 7.0.7.2"
+gem "rails", "~> 7.1.0"
+gem "trilogy"
 gem "sprockets-rails"
 gem "puma", "~> 5.0"
 gem "importmap-rails"
@@ -17,6 +18,16 @@ gem "sidekiq", "~> 7.1"
 gem "aws-sdk-s3"
 gem "dotenv-rails"
 gem "faker"
+gem "base64"
+gem "bigdecimal"
+gem "observer"
+gem "ostruct"
+gem "benchmark"
+gem "irb"
+gem "reline"
+gem "fiddle"
+gem "mutex_m" # Works around LoadError: cannot load such file -- mutex_m
+gem "concurrent-ruby", "1.3.4" # Works around uninitialized constant ActiveSupport::LoggerThreadSafeLevel::Logger
 
 gem "twilio-rails", "1.0.1"
 # To test against a branch or fork of twilio-rails, uncomment the following line and set the appropriate branch or fork.
@@ -30,8 +41,4 @@ end
 
 group :development do
   gem "web-console"
-end
-
-group :production do
-  gem "mysql2", "~> 0.5.5"
 end

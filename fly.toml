@@ -4,51 +4,52 @@
 #
 
 app = "kmcphillips-twilio-rails-example"
-primary_region = "yul"
+primary_region = "yyz"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
+swap_size_mb = 512
 
 [experimental]
-  auto_rollback = true
+auto_rollback = true
 
 [build]
-  [build.args]
-    BUILD_COMMAND = "bin/rails fly:build"
-    SERVER_COMMAND = "bin/rails fly:server"
+[build.args]
+BUILD_COMMAND = "bin/rails fly:build"
+SERVER_COMMAND = "bin/rails fly:server"
 
 [deploy]
-  release_command = "bin/rails fly:release"
+release_command = "bin/rails fly:release"
 
 [env]
-  PORT = "8080"
+PORT = "8080"
 
 [processes]
-  app = "bin/rails fly:server"
-  sidekiq = "bin/rails fly:sidekiq"
+app = "bin/rails fly:server"
+sidekiq = "bin/rails fly:sidekiq"
 
 [[services]]
-  protocol = "tcp"
-  internal_port = 8080
-  processes = ["app"]
+protocol = "tcp"
+internal_port = 8080
+processes = ["app"]
 
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
+[[services.ports]]
+port = 80
+handlers = ["http"]
+force_https = true
 
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 25
-    soft_limit = 20
+[[services.ports]]
+port = 443
+handlers = ["tls", "http"]
+[services.concurrency]
+type = "connections"
+hard_limit = 25
+soft_limit = 20
 
-  [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "1s"
+[[services.tcp_checks]]
+interval = "15s"
+timeout = "2s"
+grace_period = "1s"
 
 [[statics]]
-  guest_path = "/app/public"
-  url_prefix = "/"
+guest_path = "/app/public"
+url_prefix = "/"
